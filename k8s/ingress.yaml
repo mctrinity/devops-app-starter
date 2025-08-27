@@ -1,0 +1,24 @@
+# k8s/ingress.yaml
+# If you use another controller (e.g., AWS ALB, Traefik), change the annotations/class.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: devops-app
+  namespace: devops-app
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/proxy-body-size: '1m'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '30'
+    nginx.ingress.kubernetes.io/limit-rps: '20'
+spec:
+  rules:
+    - host: api.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: devops-app
+                port:
+                  number: 80

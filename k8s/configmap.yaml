@@ -1,0 +1,9 @@
+# k8s/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: devops-app-config
+  namespace: devops-app
+data:
+  APP_ENV: 'prod'
+  APP_LOG_LEVEL: 'INFO'
