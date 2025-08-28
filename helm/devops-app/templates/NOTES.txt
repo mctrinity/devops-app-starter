@@ -1,0 +1,19 @@
+1. Get the application URL by running these commands:
+
+  # For local dev with Docker Desktop ingress
+  http://devops.local/
+
+  # For AKS with ingress-nginx (LoadBalancer)
+  export SERVICE_IP=$(kubectl get svc --namespace ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo "Visit: http://$SERVICE_IP.nip.io/"
+
+2. Test health endpoint:
+
+  kubectl -n {{ .Release.Namespace }} get pods
+  curl http://$SERVICE_IP.nip.io/healthz
+
+3. Explore API docs:
+
+  http://devops.local/docs
+  OR
+  http://$SERVICE_IP.nip.io/docs

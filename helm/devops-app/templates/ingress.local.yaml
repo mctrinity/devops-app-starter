@@ -1,0 +1,23 @@
+# k8s/ingress.local.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: devops-app
+  namespace: devops-app
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: '1m'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '30'
+    nginx.ingress.kubernetes.io/limit-rps: '20'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: devops.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: devops-app
+                port:
+                  number: 80

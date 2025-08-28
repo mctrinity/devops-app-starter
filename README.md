@@ -49,7 +49,14 @@ kubectl -n devops-app get svc
 
 ---
 
-## 🌐 Ingress with `devops.local`
+## 🌐 Ingress
+
+We provide **two Ingress manifests** depending on your environment:
+
+* `k8s/ingress.local.yaml` → for local development with Docker Desktop / Minikube (host: `devops.local`).
+* `k8s/ingress.aks.yaml` → for AKS deployments using a LoadBalancer external IP.
+
+### Local (`devops.local`)
 
 1. Install ingress-nginx:
 
@@ -74,7 +81,7 @@ kubectl -n ingress-nginx get pods -w
 4. Apply ingress:
 
 ```powershell
-kubectl apply -f k8s/ingress.yaml
+kubectl apply -f k8s/ingress.local.yaml
 kubectl -n devops-app get ingress
 ```
 
@@ -83,6 +90,24 @@ kubectl -n devops-app get ingress
 * [http://devops.local/healthz](http://devops.local/healthz)
 * [http://devops.local/hello?name=maki](http://devops.local/hello?name=maki)
 * [http://devops.local/docs](http://devops.local/docs)
+
+### AKS (`LoadBalancer` external IP)
+
+1. Deploy ingress:
+
+```powershell
+kubectl apply -f k8s/ingress.aks.yaml
+```
+
+2. Get external IP:
+
+```powershell
+kubectl -n ingress-nginx get svc ingress-nginx-controller
+```
+
+3. Browse:
+
+* http\://<EXTERNAL-IP>/docs
 
 ---
 
@@ -145,6 +170,7 @@ kubectl -n devops-app logs -l app=devops-app --tail=100 -f
 
 * Local dev: **[http://localhost:8080](http://localhost:8080)**
 * K8s + Ingress: **[http://devops.local](http://devops.local)**
+* AKS Ingress: **http\://<EXTERNAL-IP>**
 * Metrics: **/metrics**
 * CI/CD: Build → GHCR → Deploy (AKS)
 
