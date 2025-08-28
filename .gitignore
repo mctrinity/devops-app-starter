@@ -1,0 +1,94 @@
+# .gitignore for DevOps App Starter
+
+# Python
+
+**pycache**/
+\*.py\[cod]
+\*.pyo
+\*.pyd
+\*.so
+\*.egg
+\*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+
+.env
+.venv
+ENV/
+venv/
+.env.*
+
+# IDE / Editor
+
+.vscode/
+.idea/
+\*.swp
+\*.swo
+
+# Logs & Debug
+
+\*.log
+\*.tmp
+\*.pid
+
+# OS
+
+.DS\_Store
+Thumbs.db
+
+# Docker
+
+\*.local
+\*.bak
+.docker/
+
+# Kubernetes
+
+*.out
+k8s/*.secret.yaml
+
+# Coverage / Testing
+
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+.pytest\_cache/
+
+# Node (if frontend added later)
+
+node\_modules/
+
+# GitHub / Actions
+
+.github/secrets/
+
+# Local overrides
+
+\*.local.yaml
+\*.override.yaml
+
+# Terraform
+
+.terraform/
+\*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars
+\*.plan
+
+# Helm
+
+charts/\*.tgz
+helmfile.yaml.lock
+
+# Secrets
+
+secrets/
+*.secret.*

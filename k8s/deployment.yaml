@@ -19,7 +19,7 @@ spec:
       serviceAccountName: devops-app-sa
       containers:
         - name: api
-          image: your-registry.io/your-org/devops-app:TAG
+          image: ghcr.io/mctrinity/devops-app-starter:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
